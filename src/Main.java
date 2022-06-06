@@ -10,13 +10,12 @@ public class Main {
     static String wordM = "polymorphism";
     static String wordH = "talkischeapshowmethecode";
     static String word="";
-
-
-
-
+    static int flag;
 
 
     public static void main(String[] args) {
+do {
+
 
         Scanner input = new Scanner(System.in);
         //разделим уровни сложности
@@ -24,27 +23,27 @@ public class Main {
         System.out.println("Введите 1 для легкого уровня,2 для среднего, 3 для сложного");
 
             int level=input.nextInt();
-        int variant;
         switch  (level) {
-            case 1:  variant=1;
+            case 1:
                word= getrandomvalue(1);
                  //word=wordE;
-
             break;
-            case 2:variant=2;
+            case 2:
                 word= getrandomvalue(2);
                     //word=wordM;
             break;
-            case 3:variant=3;
+            case 3:
                 word= getrandomvalue(3);
                    // word=wordH;
             break;
+            case 13:
+                System.out.println("Бонусный уровень!");
+                    word=wordH;
+                    break;
             default:
                 System.out.println("Введенное значение невозможно обработать.Автоматический выбор легкого уровня");
-                variant=1;
+                word= getrandomvalue(1);
                 break;
-
-
         }
 
         // javalove --------
@@ -79,6 +78,18 @@ public class Main {
             }
         } while (maskWord.contains("-"));
         System.out.println("Поздравляем ты выйграл");
+    System.out.println("Сыгаем еще раз? Y/N");
+
+    String answer =input.next();
+
+    if (answer.equalsIgnoreCase("y")){
+         flag=1;
+    }
+    else {
+         flag=2 ;
+    }
+    } while (flag==1);
+
     }
 
     /*
@@ -103,14 +114,10 @@ public class Main {
 
         //создадим по три варианта для каждого уровня
         //используем arraylist
-        //ArrayList<String> easywords= new ArrayList<String>();
-        //easywords.add(1,"javalove");
-        //easywords.add(2,"helloworld");
-        //easywords.add(3,"idea");
-        String[] easywords= {"javalove","helloworld","idea"};
-
-
-
+        ArrayList<String> easywords= new ArrayList<String>();
+        easywords.add("javalove");
+        easywords.add("helloworld");
+        easywords.add("idea");
 
         ArrayList<String> mediumwords= new ArrayList<String>();
         mediumwords.add("runtime");
@@ -118,54 +125,44 @@ public class Main {
         mediumwords.add("compilation");
 
         ArrayList<String> hardwords= new ArrayList<String>();
-        mediumwords.add("polymorphism");
-        mediumwords.add("abstraction");
-        mediumwords.add("encapsulation");
+        hardwords.add("polymorphism");
+        hardwords.add("abstraction");
+        hardwords.add("encapsulation");
 
         Random rand = new SecureRandom();
         String randomElement="";
 
         if ( variant==1) {
-            randomElement= easywords[rand.nextInt(easywords.length)];
 
-            //int numberOfElements = 3;
-            //for (int i = 0; i<numberOfElements; i++) {
-            //    int randomIndex = rand.nextInt(easywords.size());
-            //     randomElement = easywords.get(randomIndex);
-            //    //easywords.remove(randomIndex);
-            //}
+           int numberOfElements = 3;
+           for (int i = 0; i<numberOfElements; i++) {
+               int randomIndex = rand.nextInt(easywords.size());
+                randomElement = easywords.get(randomIndex);
+              //easywords.remove(randomIndex);
+            }
         }
         else if (variant==2){
 
             int numberOfElements = 3;
-            for (int i = 1; i<numberOfElements; i++) {
+            for (int i = 0; i<numberOfElements; i++) {
                 int randomIndex = rand.nextInt(mediumwords.size());
                  randomElement = mediumwords.get(randomIndex);
-
-
             }
 
             }
         else if (variant==3){
 
                 int numberOfElements = 3;
-                for (int i = 1; i<numberOfElements; i++) {
+                for (int i = 0; i<numberOfElements; i++) {
                     int randomIndex = rand.nextInt(hardwords.size());
                     randomElement = hardwords.get(randomIndex);
-
-
             }
-
         }
         else{
             randomElement="talkischeapshowmethecode";
 
-
         }
         return randomElement;
-
-
-
 
     }
 }
