@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static String word = "javalove";
+    static String word = "HelloWorld";
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
